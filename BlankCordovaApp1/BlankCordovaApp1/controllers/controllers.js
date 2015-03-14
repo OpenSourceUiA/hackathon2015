@@ -24,7 +24,7 @@
         $scope.sendTrip = function (trip) {
             var newTrip = {
                 from: trip.from,
-                to:   trip.to,
+                to: trip.to,
                 time: trip.time,
                 date: trip.date,
                 type: trip.type
@@ -60,3 +60,4 @@
             save: save
         }
     })
+;

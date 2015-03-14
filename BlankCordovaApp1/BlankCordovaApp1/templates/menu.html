@@ -19,19 +19,19 @@
                 <form data-ng-submit="sendTrip(trip)">
                     <h3>Destination</h3>
                     <label class="item item-input">
-                        <input type="search" ng-model="trip.from" placeholder="From">
+                        <input type="search" ng-model="trip.from" placeholder="From" ng-required="true">
                     </label>
                     <label class="item item-input">
-                        <input type="search" ng-model="trip.to" placeholder="To">
+                        <input type="search" ng-model="trip.to" placeholder="To" ng-required="true">
                     </label>
                     <h3>Time</h3>
                     <!--<ion-radio style="width:50%;float:left" ng-model=""  ng-value="">Arrival</ion-radio>
                     <ion-radio style="width:50%;float:left" ng-model="" ng-value="">Departure</ion-radio>-->
                     <label class="item item-input">
-                        <input type="date" ng-model="trip.date" placeholder="Date">
+                        <input type="date" ng-model="trip.date" placeholder="Date" ng-required="true">
                     </label>
                     <label class="item item-input">
-                        <input type="time" ng-model="trip.time" placeholder="Time">
+                        <input type="time" ng-model="trip.time" placeholder="Time" ng-required="true">
                     </label>
                     <label class="item item-input" style="margin:0;padding:0;">
                         <ion-radio style="width:51%;float:left;" ng-model="trip.type" ng-value="'car'"><i class="icon ion-android-car"></i></ion-radio>
