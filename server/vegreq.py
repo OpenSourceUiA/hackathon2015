@@ -2,6 +2,7 @@
 
 import requests
 import json
+import csv
 
 
 class VegRequest(object):
@@ -40,13 +41,17 @@ class VegRequest(object):
             + rightbrack + rightcurlbrack
 
         r = requests.get(self.url + "/sok?kriterie=" + searchstring2
-                + "&assosiasjoner=false" + "&egenskaper=false")
+                         + "&assosiasjoner=false" + "&egenskaper=false")
         rjson = json.loads(r.content)
         return rjson
 
+    def listBom(self):
+        bomlist = []
+        with open("bomstasjoner.csv", "rt") as f:
+            reader = csv.reader(f, delimiter=';')
+            for row in reader:
+                for field in row:
+                    if field == "1001":
+                        bomlist.append(row)
 
-# print VegRequest().getObjekt("487458622")
-objlist = VegRequest().getObjektList("45")
-# print objlist['vegObjekter'][9]["egenskaper"]
-krsbom = VegRequest().sok("1001")
-print krsbom['resultater'][0]['vegObjekter'][0]['self']['uri']
+        return bomlist
