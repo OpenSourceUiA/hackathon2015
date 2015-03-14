@@ -28,7 +28,7 @@ class BussRequest(object):
 
 # br = BussRequest().requestAndSoup('no', 'havreveien%20(Kristiansand)',
 #                                  'uia%20v/spicheren%20(kristiansand)',
-#                                  '15:21', '16.03.2015', '1')
+#                                  '15:21', '16.03.2015', '2')
 
 # print br["TripData"]["i"][0]["n"]
 # print br["TripData"]["i"][1]["n"].encode("utf-8")
