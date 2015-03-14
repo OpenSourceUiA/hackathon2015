@@ -151,6 +151,7 @@
     <Content Include="scripts\angular-ui-router.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\app.js" />
     <Content Include="scripts\errors.json" />
     <Content Include="scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="scripts\i18n\angular-locale_aa-er.js" />
@@ -888,6 +889,7 @@
     <Content Include="scripts\ionic.min.js" />
     <Content Include="scripts\version.json" />
     <Content Include="templates\home.html" />
+    <Content Include="templates\menu.html" />
     <Folder Include="images\" />
     <Content Include="controllers\controllers.js" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />
