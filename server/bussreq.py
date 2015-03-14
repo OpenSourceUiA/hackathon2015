@@ -19,7 +19,6 @@ class BussRequest(object):
         divdata = data['data-tm-map-options']
         return divdata.encode('utf-8')
 
-# hjelpemetode under utvikling
     def requestAndSoup(self, lang, fra, to, time, date, direction):
         requestet = self.getRequest(lang, fra, to, time, date, direction)
         dataen = self.soupifyRequest(requestet.content)
@@ -27,11 +26,11 @@ class BussRequest(object):
         return jsondata
 
 
-br = BussRequest().requestAndSoup('no', 'havreveien%20(Kristiansand)',
-                                  'uia%20v/spicheren%20(kristiansand)',
-                                  '15:21', '16.03.2015', '1')
+# br = BussRequest().requestAndSoup('no', 'havreveien%20(Kristiansand)',
+#                                  'uia%20v/spicheren%20(kristiansand)',
+#                                  '15:21', '16.03.2015', '1')
 
-print br["TripData"]["i"][0]["n"]
-print br["TripData"]["i"][1]["n"].encode("utf-8")
-print br["TripData"]["i"][2]["n"].encode("utf-8")
-print br["TripData"]["i"][3]["n"].encode("utf-8")
+# print br["TripData"]["i"][0]["n"]
+# print br["TripData"]["i"][1]["n"].encode("utf-8")
+# print br["TripData"]["i"][2]["n"].encode("utf-8")
+# print br["TripData"]["i"][3]["n"].encode("utf-8")
