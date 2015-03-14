@@ -1,6 +1,7 @@
 from flask import Flask
 from flask.ext.restful import Api, Resource, reqparse
 from bussreq import BussRequest
+import calculations
 
 app = Flask(__name__)
 api = Api(app)
@@ -33,11 +34,30 @@ class BussAPI(Resource):
         time = args['time']
         date = args['date']
         direction = args['direction']
+        rAS = self.br.requestAndSoup(lang, fra, to, time, date, direction)
+        intersects = calculations.BomCalc().check_intersect(
+                self.br.get_coords(lang, fra, to, time, date, direction))
+        rAS["TripData"]["Bomringer"] = intersects
+        return rAS, 201
 
-        return self.br.requestAndSoup(lang, fra, to, time, date,
-                                      direction), 201
+
+class ParkingAPI(Resource):
+
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('x', type=str, required=True, help="No X \
+                coordinate given", location="json")
+        self.reqparse.add_argument('y', type=str, required=True, help="no Y \
+                coordinate given", location="json")
+        super(ParkingAPI, self).__init__()
+
+    def post(self):
+        args = self.reqparse.parse_args()
+        parkings = calculations.BomCalc().check_parking((args["y"], args["x"]))
+        return parkings
 
 
+api.add_resource(ParkingAPI, '/parking', endpoint='parking')
 api.add_resource(BussAPI, '/buss', endpoint='buss')
 
 

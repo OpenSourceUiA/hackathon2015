@@ -25,12 +25,14 @@ class BussRequest(object):
         jsondata = json.loads(dataen)
         return jsondata
 
+    def get_coords(self, lang, fra, to, time, date, direction):
+        data = self.requestAndSoup(lang, fra, to, time, date, direction)
+        coordlist = []
+        for i in data["TripData"]["i"]:
+            coordlist.append((i["y"], i["x"]))
+        return coordlist
+
 
 # br = BussRequest().requestAndSoup('no', 'havreveien%20(Kristiansand)',
 #                                  'uia%20v/spicheren%20(kristiansand)',
 #                                  '15:21', '16.03.2015', '2')
-
-# print br["TripData"]["i"][0]["n"]
-# print br["TripData"]["i"][1]["n"].encode("utf-8")
-# print br["TripData"]["i"][2]["n"].encode("utf-8")
-# print br["TripData"]["i"][3]["n"].encode("utf-8")

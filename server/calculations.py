@@ -11,22 +11,23 @@ class BomCalc(object):
     def get_raw_coords(self):
         bomliste = self.vegobj.listBom()
         coordliste = []
-
         for row in bomliste:
             coordliste.append((row[4], row[5]))
         return coordliste
 
-    def check_intersect(self):
+    def check_intersect(self, intersectlist):
         bomliste = self.get_raw_coords()
-        a = bomliste[0]
-        b = bomliste[1]
-        c = bomliste[2]
-        d = bomliste[3]
+        intersects = 0
+        for bom in bomliste:
+            for stop in intersectlist:
+                if great_circle(bom, stop).meters < 150:
+                    intersects += 1
+        return intersects
 
-        print great_circle(a, b).miles
-        print great_circle(c, d).miles
-        return great_circle(a, b).meters
-
-
-print BomCalc().get_raw_coords()
-print BomCalc().check_intersect()
+    def check_parking(self, endpoint):
+        mockparking = [("58.1493883", "7.9966805")]
+        parking_hits = 0
+        for parking in mockparking:
+            if great_circle(parking, endpoint).meters < 300:
+                parking_hits += 1
+        return parking_hits
