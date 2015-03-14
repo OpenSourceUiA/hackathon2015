@@ -28,16 +28,22 @@ class BussAPI(Resource):
 
     def post(self):
         args = self.reqparse.parse_args()
+        print args
         lang = args['lang']
         fra = args['fra']
         to = args['to']
-        time = args['time']
+        time = args['time'].replace("-", ":")
+        print time
         date = args['date']
+        print date
         direction = args['direction']
         rAS = self.br.requestAndSoup(lang, fra, to, time, date, direction)
-        intersects = calculations.BomCalc().check_intersect(
-                self.br.get_coords(lang, fra, to, time, date, direction))
-        rAS["TripData"]["Bomringer"] = intersects
+        if type(rAS) is list:
+            print rAS
+        else:
+            intersects = calculations.BomCalc().check_intersect(
+                    self.br.get_coords(lang, fra, to, time, date, direction))
+            rAS["TripData"]["Bomringer"] = intersects
         return rAS, 201
 
 
@@ -68,8 +74,6 @@ class AlertsAPI(Resource):
         self.reqparse.add_argument('veg', type=str, location="json")
         self.reqparse.add_argument('body', type=str, required=True, help="No \
                 body given", location="json")
-
-
 
 
 api.add_resource(ParkingAPI, '/parking', endpoint='parking')
