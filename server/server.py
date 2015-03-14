@@ -12,18 +12,18 @@ class BussAPI(Resource):
 
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('lang', type=str, required=True, help="No \
-                language provided", location='json')
+        self.reqparse.add_argument('lang', type=str, required=False, help="No \
+                language provided")
         self.reqparse.add_argument('fra', type=str, required=True, help="No \
-                from position  provided", location='json')
+                from position  provided")
         self.reqparse.add_argument('to', type=str, required=True, help="No \
-                from position provided", location='json')
+                from position provided")
         self.reqparse.add_argument('time', type=str, required=True, help="No \
-                time provided", location='json')
+                time provided")
         self.reqparse.add_argument('date', type=str, required=True, help="No \
-                date provided", location='json')
+                date provided")
         self.reqparse.add_argument('direction', type=str, required=True, help="No \
-                direction provided", location='json')
+                direction provided")
         super(BussAPI, self).__init__()
 
     def post(self):
