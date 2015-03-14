@@ -2,6 +2,7 @@
 # http://rp.akt.no/scripts/TravelMagic/TravelMagicWE.dll/svar?lang=no&from=havreveien%20(kristiansand)&to=uia%20v/spicheren%20(kristiansand)&time=01:21&date=15.03.2015&direction=1
 import requests
 from bs4 import BeautifulSoup
+import json
 
 
 class BussRequest(object):
@@ -22,9 +23,12 @@ class BussRequest(object):
     def requestAndSoup(self, lang, fra, to, time, date, direction):
         requestet = self.getRequest(lang, fra, to, time, date, direction)
         dataen = self.soupifyRequest(requestet.content)
-        return dataen
+        jsondata = json.loads(dataen)
+        return jsondata
 
 
-print BussRequest().requestAndSoup('no', 'havreveien%20(Kristiansand)',
-                                   'uia%20v/spicheren%20(kristiansand)',
-                                   '01:21', '15.03.2015', '1')
+br = BussRequest().requestAndSoup('no', 'havreveien%20(Kristiansand)',
+                                  'uia%20v/spicheren%20(kristiansand)',
+                                  '15:21', '16.03.2015', '1')
+
+print br["TripData"]["i"][0]["n"]
