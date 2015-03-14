@@ -110,6 +110,7 @@
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="templates\home.html" />
     <Folder Include="images\" />
     <Content Include="controllers\controllers.js" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />
