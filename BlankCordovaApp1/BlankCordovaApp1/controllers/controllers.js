@@ -5,6 +5,18 @@
         $scope.deleteTrip = function (idx) {
             $scope.previousTrips.splice(idx, 1);
         }
+
+        $scope.toggleTrip = function (trip) {
+            if ($scope.isTripShown(trip)) {
+                $scope.shownTrip = null;
+            } else {
+                $scope.shownTrip = trip;
+            }
+        };
+        $scope.isTripShown = function (trip) {
+            return $scope.shownTrip === trip;
+        };
+
     }])
     .controller('menuCtrl', ['$scope', 'lStorage', function ($scope, lStorage) {
         $scope.trips = lStorage.getAll('trips')
