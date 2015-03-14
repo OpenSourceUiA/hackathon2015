@@ -6,15 +6,16 @@
             $scope.previousTrips.splice(idx, 1);
         }
     }])
-    .controller('menuCtrl', ['$scope', 'lStorage', '$ionicSideMenuDelegate', function ($scope, lStorage, $ionicSideMenuDelegate) {
+    .controller('menuCtrl', ['$scope', 'lStorage', function ($scope, lStorage) {
         $scope.trips = lStorage.getAll('trips')
 
         $scope.sendTrip = function (trip) {
             var newTrip = {
                 from: trip.from,
-                to: trip.to,
+                to:   trip.to,
                 time: trip.time,
-                date: trip.date
+                date: trip.date,
+                type: trip.type
             }
             trip.from = '';
             trip.to = '';
@@ -28,7 +29,6 @@
                 $ionicSideMenuDelegate.toggleLeft();
             };
         }
-
     }])
     .factory('lStorage', function () {
         var getAll = function (key) {
@@ -39,12 +39,10 @@
             }
             return [];
         };
-
         var save = function (key, item) {
             var itemString = JSON.stringify(item)
             window.localStorage.setItem(key, itemString)
         };
-
         return {
             getAll: getAll,
             save: save

@@ -33,8 +33,8 @@
                     <label class="item item-input">
                         <input type="time" ng-model="trip.time" placeholder="Time">
                     </label>
-                    <!--<ion-radio style="width:50%;float:left;height:60px;" ng-model="" ng-value=""><img src="../images/car.png" style="width:100%;height:100%;" /></ion-radio>
-                    <ion-radio style="width:50%;float:left;height:60px;" ng-model="" ng-value=""><img src="../images/buss.png" style="width:100%;height:100%;"/></ion-radio>-->
+                    <ion-radio style="width:50%;float:left;height:60px;" ng-model="trip.type" ng-value="'car'"><i class="icon ion-android-car"></i></ion-radio>
+                    <ion-radio style="width:50%;float:left;height:60px;" ng-model="trip.type" ng-value="'bus'"><i class="icon ion-android-bus"></i></ion-radio>
                     <button type="submit" class="button button-positive" menu-toggle="left">Search</button>
                 </form>
         </ion-list>
