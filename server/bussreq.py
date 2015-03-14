@@ -32,3 +32,6 @@ br = BussRequest().requestAndSoup('no', 'havreveien%20(Kristiansand)',
                                   '15:21', '16.03.2015', '1')
 
 print br["TripData"]["i"][0]["n"]
+print br["TripData"]["i"][1]["n"].encode("utf-8")
+print br["TripData"]["i"][2]["n"].encode("utf-8")
+print br["TripData"]["i"][3]["n"].encode("utf-8")
