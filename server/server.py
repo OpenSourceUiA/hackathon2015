@@ -12,7 +12,7 @@ class BussAPI(Resource):
 
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('lang', type=str, required=False, help="No \
+        self.reqparse.add_argument('lang', type=str, required=True, help="No \
                 language provided")
         self.reqparse.add_argument('fra', type=str, required=True, help="No \
                 from position  provided")
@@ -24,6 +24,8 @@ class BussAPI(Resource):
                 date provided")
         self.reqparse.add_argument('direction', type=str, required=True, help="No \
                 direction provided")
+        self.reqparse.add_argument('bensinpris', type=str, required=False,
+                                   help="No gas price provided")
         super(BussAPI, self).__init__()
 
     def post(self):
@@ -33,17 +35,25 @@ class BussAPI(Resource):
         fra = args['fra']
         to = args['to']
         time = args['time'].replace("-", ":")
-        print time
         date = args['date']
-        print date
         direction = args['direction']
+        parktimer = 6
         rAS = self.br.requestAndSoup(lang, fra, to, time, date, direction)
         if type(rAS) is list:
             print rAS
         else:
             intersects = calculations.BomCalc().check_intersect(
                     self.br.get_coords(lang, fra, to, time, date, direction))
-            rAS["TripData"]["Bomringer"] = intersects
+            coords = self.br.get_coords(lang, fra, to, time, date, direction)
+            fuelcost = calculations.BomCalc().check_fuel("0.13", "13",
+                                                         coords[0], coords[-1])
+            parkingcost = 20*parktimer
+            rAS["TripData"]["Bomringer"] = intersects[0]
+            rAS["TripData"]["Drivekost"] = fuelcost
+            rAS["TripData"]["Bomkost"] = intersects[1]
+            rAS["TripData"]["Biltotkost"] = float(intersects[1]) +\
+                float(fuelcost) + float(parkingcost)
+            rAS["TripData"]["Parkkost"] = parkingcost
         return rAS, 201
 
 
