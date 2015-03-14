@@ -1,6 +1,14 @@
-﻿<ion-view view-title="Home">
+﻿<ion-view view-title="Previous Trips">
     <ion-content>
-        Hello World
+        <ion-list>
+            <ion-item class="item-remove-animate item item-icon-left" ng-repeat="trips in previousTrips track by $index">
+                <i class="icon ion-android-car"></i>
+                {{trips.from}}->{{trips.to}}
+                <ion-option-button class="button-assertive" ng-click="deleteTrip($index)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>
 

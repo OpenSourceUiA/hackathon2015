@@ -22,13 +22,10 @@ angular.module('app', ['ionic', 'app.controllers'])
 
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-    .state('home', {
-        url: "/",
-        templateUrl: "templates/home.html"
-    })
     .state('app', {
         url: "/app",
-        templateUrl: "templates/menu.html"
+        templateUrl: "templates/menu.html",
+        controller: 'menuCtrl'
     })
     .state('app.home', {
         url: "/home",

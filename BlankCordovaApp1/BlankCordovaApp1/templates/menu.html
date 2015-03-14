@@ -12,12 +12,32 @@
 
     <ion-side-menu side="left" id="menu">
         <ion-header-bar class="bar-positive">
-            <h1 class="title">Settings</h1>
+            <h1 class="title">Destination</h1>
         </ion-header-bar>
-        <ion-content>
-            <ion-list>
-
-            </ion-list>
+        <ion-content scroll="flase">
+            <ion-list stlye=>
+                <form data-ng-submit="sendTrip(trip)">
+                    <h3>Destination</h3>
+                    <label class="item item-input">
+                        <input type="search" ng-model="trip.from" placeholder="From">
+                    </label>
+                    <label class="item item-input">
+                        <input type="search" ng-model="trip.to" placeholder="To">
+                    </label>
+                    <h3>Time</h3>
+                    <!--<ion-radio style="width:50%;float:left" ng-model=""  ng-value="">Arrival</ion-radio>
+                    <ion-radio style="width:50%;float:left" ng-model="" ng-value="">Departure</ion-radio>-->
+                    <label class="item item-input">
+                        <input type="date" ng-model="trip.date" placeholder="Date">
+                    </label>
+                    <label class="item item-input">
+                        <input type="time" ng-model="trip.time" placeholder="Time">
+                    </label>
+                    <!--<ion-radio style="width:50%;float:left;height:60px;" ng-model="" ng-value=""><img src="../images/car.png" style="width:100%;height:100%;" /></ion-radio>
+                    <ion-radio style="width:50%;float:left;height:60px;" ng-model="" ng-value=""><img src="../images/buss.png" style="width:100%;height:100%;"/></ion-radio>-->
+                    <button type="submit" class="button button-positive" menu-toggle="left">Search</button>
+                </form>
+        </ion-list>
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>

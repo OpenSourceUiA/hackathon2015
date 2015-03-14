@@ -112,10 +112,13 @@
   <ItemGroup>
     <Content Include="Content\ionic.css" />
     <Content Include="Content\ionic.min.css" />
+    <Content Include="Content\ionicons.css" />
     <Content Include="fonts\ionicons.eot" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\ionicons.ttf" />
     <Content Include="fonts\ionicons.woff" />
+    <Content Include="images\buss.png" />
+    <Content Include="images\car.png" />
     <Content Include="packages.config" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="scripts\angular-animate.min.js" />
@@ -890,7 +893,6 @@
     <Content Include="scripts\version.json" />
     <Content Include="templates\home.html" />
     <Content Include="templates\menu.html" />
-    <Folder Include="images\" />
     <Content Include="controllers\controllers.js" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />
     <Content Include="merges\android\scripts\platformOverrides.js" />
