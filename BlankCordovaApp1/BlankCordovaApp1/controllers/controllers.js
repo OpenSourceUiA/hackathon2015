@@ -1,5 +1,5 @@
 ﻿angular
-    .module('app', ['ionic',])
-    .controller('homeCtrl', ['$scope', , function ($scope,) {
+    .module('app.controllers', ['ionic'])
+    .controller('homeCtrl', ['$scope', , function ($scope) {
         console.log('Hello World');
     }]);
