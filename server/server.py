@@ -57,9 +57,24 @@ class ParkingAPI(Resource):
         return parkings
 
 
+class AlertsAPI(Resource):
+
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('x', type=str, required=True, help="No X \
+                coordinate given", location="json")
+        self.reqparse.add_argument('y', type=str, required=True, help="No Y \
+                coordinate given", location="json")
+        self.reqparse.add_argument('veg', type=str, location="json")
+        self.reqparse.add_argument('body', type=str, required=True, help="No \
+                body given", location="json")
+
+
+
+
 api.add_resource(ParkingAPI, '/parking', endpoint='parking')
 api.add_resource(BussAPI, '/buss', endpoint='buss')
-
+api.add_resource(AlertsAPI, '/alerts', endpoint='alerts')
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
