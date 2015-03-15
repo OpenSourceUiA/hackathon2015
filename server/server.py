@@ -26,6 +26,8 @@ class BussAPI(Resource):
                 direction provided")
         self.reqparse.add_argument('bensinpris', type=str, required=False,
                                    help="No gas price provided")
+        self.reqparse.add_argument('parktimer', type=str, required=False,
+                                   help="No parking hours provided")
         super(BussAPI, self).__init__()
 
     def post(self):
@@ -37,7 +39,7 @@ class BussAPI(Resource):
         time = args['time'].replace("-", ":")
         date = args['date']
         direction = args['direction']
-        parktimer = 6
+        parktimer = args['parktimer']
         rAS = self.br.requestAndSoup(lang, fra, to, time, date, direction)
         if type(rAS) is list:
             print rAS
@@ -47,7 +49,10 @@ class BussAPI(Resource):
             coords = self.br.get_coords(lang, fra, to, time, date, direction)
             fuelcost = calculations.BomCalc().check_fuel("0.13", "13",
                                                          coords)
-            parkingcost = 20*parktimer
+            if parktimer:
+                parkingcost = 20*int(parktimer)
+            else:
+                parkingcost = 0
             rAS["TripData"]["Bomringer"] = intersects[0]
             rAS["TripData"]["Drivekost"] = fuelcost
             rAS["TripData"]["Bomkost"] = intersects[1]

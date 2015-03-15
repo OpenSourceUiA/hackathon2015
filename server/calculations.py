@@ -23,11 +23,15 @@ class BomCalc(object):
         iterator = 0
         for bom in bomliste:
             price = [rawbomliste[iterator][1], rawbomliste[iterator][2]]
+            adt = self.get_adt(rawbomliste[iterator])
             iterator += 1
             for stop in intersectlist:
                 if great_circle(bom, stop).meters < 150:
+                    print bomliste
+                    print bom
                     intersects += 1
                     cost += float(price[0])
+                    print adt
                     print cost
         finaldata = [intersects, cost]
         return finaldata
@@ -45,9 +49,9 @@ class BomCalc(object):
         prevpoint = coords[0]
         for point in coords:
             distance += great_circle(point, prevpoint).kilometers
-            print prevpoint
             prevpoint = point
-        print "=====DISTANCEBEGIN======"
-        print distance
         totalprice = (float(distance)*float(fueleff))*float(fuelprice)
         return totalprice
+
+    def get_adt(self, intersect):
+        return intersect[-4]
