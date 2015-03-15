@@ -69,6 +69,7 @@
             trip.direction = '';
             $scope.trips.push(newTrip)
             lStorage.save('trips', $scope.trips) = JSON.stringify('trips')
+            $scope.trips = lStorage.getAll('trips')
         }
 
        /* $http({

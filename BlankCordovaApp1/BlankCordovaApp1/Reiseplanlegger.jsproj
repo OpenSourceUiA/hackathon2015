@@ -113,6 +113,7 @@
     <Content Include="Content\ionic.css" />
     <Content Include="Content\ionic.min.css" />
     <Content Include="Content\ionicons.css" />
+    <Content Include="CordovaApp-debug.apk" />
     <Content Include="fonts\ionicons.eot" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\ionicons.ttf" />

@@ -11,14 +11,20 @@
                         Delete<br />
                     </ion-option-button>
                 </ion-item>
-                <ion-item style="height:200px;" class="item-accordion" ng-show="isTripShown(trip)">
+                <ion-scroll>
+                    <ion-item style="height:200px; class=" item-accordion" ng-show="isTripShown(trip)">
                         Bilkostnad: {{ tripps.TripData.Biltotkost | currency: "Nok " }}<br />
                         Reisetid: {{tripps.TripData.duration}} min.<br />
                         Dato: {{trip.date | date: format : timezone}}<br />
-                        Avreise:  {{trip.time | date: "HH:mm:ss"}}
+                        Avreise:  {{trip.time | date: "HH:mm:ss"}}<br />
+                        Parkering: {{tripps.TripData.Parkkost | currency: "Nok "}}<br />
+                        Bussbillett: {{tripps.TripData.BussBillett | currency: "Nok "}}<br />
+                        Bomkost: {{tripps.TripData.Bomkost | currency: "Nok "}}<br />
+                        Drivstoff: {{tripps.TripData.Drivekost | currency: "Nok "}}
                         <!--<button class="button button-positive">More Details</button>-->
-                    
-                </ion-item>
+
+                    </ion-item>
+                </ion-scroll>
             </div>
         </ion-list>
     </ion-content>
