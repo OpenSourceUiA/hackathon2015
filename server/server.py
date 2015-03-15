@@ -12,7 +12,7 @@ class BussAPI(Resource):
 
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('lang', type=str, required=True, help="No \
+        self.reqparse.add_argument('lang', type=str, required=False, help="No \
                 language provided")
         self.reqparse.add_argument('fra', type=str, required=True, help="No \
                 from position  provided")
@@ -30,13 +30,16 @@ class BussAPI(Resource):
                                    help="No parking hours provided")
         super(BussAPI, self).__init__()
 
-    def post(self):
+    # def get(self):
+    #    print self.reqparse.parse_args()
+
+    def get(self):
         args = self.reqparse.parse_args()
         print args
-        lang = args['lang']
+        lang = "no"
         fra = args['fra']
         to = args['to']
-        time = args['time'].replace("-", ":")
+        time = args['time']
         date = args['date']
         direction = args['direction']
         parktimer = args['parktimer']
