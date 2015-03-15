@@ -46,7 +46,7 @@ class BussAPI(Resource):
                     self.br.get_coords(lang, fra, to, time, date, direction))
             coords = self.br.get_coords(lang, fra, to, time, date, direction)
             fuelcost = calculations.BomCalc().check_fuel("0.13", "13",
-                                                         coords[0], coords[-1])
+                                                         coords)
             parkingcost = 20*parktimer
             rAS["TripData"]["Bomringer"] = intersects[0]
             rAS["TripData"]["Drivekost"] = fuelcost
@@ -54,6 +54,7 @@ class BussAPI(Resource):
             rAS["TripData"]["Biltotkost"] = float(intersects[1]) +\
                 float(fuelcost) + float(parkingcost)
             rAS["TripData"]["Parkkost"] = parkingcost
+            rAS["TripData"]["BussBillett"] = 42
         return rAS, 201
 
 

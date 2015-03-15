@@ -40,9 +40,14 @@ class BomCalc(object):
                 parking_hits += 1
         return parking_hits
 
-    def check_fuel(self, fueleff, fuelprice, start, end):
-        distance = great_circle(start, end).kilometers
+    def check_fuel(self, fueleff, fuelprice, coords):
+        distance = 0
+        prevpoint = coords[0]
+        for point in coords:
+            distance += great_circle(point, prevpoint).kilometers
+            print prevpoint
+            prevpoint = point
+        print "=====DISTANCEBEGIN======"
         print distance
         totalprice = (float(distance)*float(fueleff))*float(fuelprice)
-        print totalprice
         return totalprice
