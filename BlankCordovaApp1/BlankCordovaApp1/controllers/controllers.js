@@ -1,9 +1,12 @@
 ﻿angular
     .module('app.controllers', ['ionic'])
-    .controller('homeCtrl', ['$scope', 'lStorage', function ($scope, lStorage) {
+    .controller('homeCtrl', ['$scope', '$http', 'lStorage', function ($scope, $http, lStorage) {
         $scope.previousTrips = lStorage.getAll('trips');
         $scope.deleteTrip = function (idx) {
             $scope.previousTrips.splice(idx, 1);
+            $scope.previousTrips.push(splicedTrip)
+            lStorage.save('trips', $scope.splicedTrip) = JSON.stringify('trips')
+
         }
         
 
@@ -17,7 +20,16 @@
         $scope.isTripShown = function (trip) {
             return $scope.shownTrip === trip;
         };
-        
+       $scope.doRefresh = function () {
+            $http.get('/home')
+            .success(function () {
+                $scope.previousTrips = $scope.trips;
+                console.log("Success!");
+            })
+            .finally(function () {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+        }; 
 
     }])
     .controller('menuCtrl', ['$scope', '$http', 'lStorage', function ($scope, $http, lStorage) {
@@ -69,7 +81,7 @@
             trip.direction = '';
             $scope.trips.push(newTrip)
             lStorage.save('trips', $scope.trips) = JSON.stringify('trips')
-            $scope.trips = lStorage.getAll('trips')
+            
         }
 
        /* $http({

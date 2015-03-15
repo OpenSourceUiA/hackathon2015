@@ -1,32 +1,34 @@
 ﻿<ion-view view-title="Previous Trips">
     <ion-content>
-        <ion-list>
-            
-            <div ng-repeat="trip in previousTrips track by $index">
-                <ion-item class="item-remove-animate item item-icon-left " ng-click="toggleTrip(trip)" ng-class="{active: isTripShown(trip)}">
-                    <i class="icon ion-android-{{trip.type}}"></i>
-                    {{trip.fra}}   <i class="ion-arrow-right-a"></i><br />
-                    {{trip.to}}
-                    <ion-option-button class="button-assertive" ng-click="deleteTrip($index)">
-                        Delete<br />
-                    </ion-option-button>
-                </ion-item>
-                <ion-scroll>
-                    <ion-item style="height:200px; class=" item-accordion" ng-show="isTripShown(trip)">
-                        Bilkostnad: {{ tripps.TripData.Biltotkost | currency: "Nok " }}<br />
-                        Reisetid: {{tripps.TripData.duration}} min.<br />
-                        Dato: {{trip.date | date: format : timezone}}<br />
-                        Avreise:  {{trip.time | date: "HH:mm:ss"}}<br />
-                        Parkering: {{tripps.TripData.Parkkost | currency: "Nok "}}<br />
-                        Bussbillett: {{tripps.TripData.BussBillett | currency: "Nok "}}<br />
-                        Bomkost: {{tripps.TripData.Bomkost | currency: "Nok "}}<br />
-                        Drivstoff: {{tripps.TripData.Drivekost | currency: "Nok "}}
-                        <!--<button class="button button-positive">More Details</button>-->
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+            <ion-list>
 
+                <div ng-repeat="trip in previousTrips track by $index">
+                    <ion-item class="item-remove-animate item item-icon-left " ng-click="toggleTrip(trip)" ng-class="{active: isTripShown(trip)}">
+                        <i class="icon ion-android-{{trip.type}}"></i>
+                        {{trip.fra}}   <i class="ion-arrow-right-a"></i><br />
+                        {{trip.to}}
+                        <ion-option-button class="button-assertive" ng-click="deleteTrip($index)">
+                            Delete<br />
+                        </ion-option-button>
                     </ion-item>
-                </ion-scroll>
-            </div>
-        </ion-list>
+                    <ion-scroll>
+                        <ion-item style="height:200px; class=" item-accordion" ng-show="isTripShown(trip)">
+                            Bilkostnad: {{ tripps.TripData.Biltotkost | currency: "Nok " }}<br />
+                            Reisetid: {{tripps.TripData.duration}} min.<br />
+                            Dato: {{trip.date | date: format : timezone}}<br />
+                            Avreise:  {{trip.time | date: "HH:mm:ss"}}<br />
+                            Parkering: {{tripps.TripData.Parkkost | currency: "Nok "}}<br />
+                            Bussbillett: {{tripps.TripData.BussBillett | currency: "Nok "}}<br />
+                            Bomkost: {{tripps.TripData.Bomkost | currency: "Nok "}}<br />
+                            Drivstoff: {{tripps.TripData.Drivekost | currency: "Nok "}}
+                            <!--<button class="button button-positive">More Details</button>-->
+
+                        </ion-item>
+                    </ion-scroll>
+                </div>
+            </ion-list>
+        
     </ion-content>
 </ion-view>
 
