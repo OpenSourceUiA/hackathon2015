@@ -18,8 +18,8 @@
             <ion-list stlye=>
                 <form data-ng-submit="sendTrip(trip)">
                     <h3>Destination</h3>
-                    <label class="item item-input">
-                        <input type="search" ng-model="trip.from" placeholder="From" ng-required="true">
+                    <label class="item item-input"> 
+                        <input type="search" ng-model="trip.fra" placeholder="Fra" ng-required="true">
                     </label>
                     <label class="item item-input">
                         <input type="search" ng-model="trip.to" placeholder="To" ng-required="true">
@@ -36,6 +36,9 @@
                     <label class="item item-input" style="margin:0;padding:0;">
                         <ion-radio style="width:51%;float:left;" ng-model="trip.type" ng-value="'car'"><i class="icon ion-android-car"></i></ion-radio>
                         <ion-radio style="width:51%;float:left;" ng-model="trip.type" ng-value="'bus'"><i class="icon ion-android-bus"></i></ion-radio>
+                    </label>
+                    <label class="item item-input">
+                        <input type="text"   ng-model="trip.fuel" placeholder="Fuel" ng-required="false" default="13" />
                     </label>
                         <button type="submit" class="button button-positive" menu-toggle="left">Search</button>
                 </form>
