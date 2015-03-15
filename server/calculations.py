@@ -26,7 +26,7 @@ class BomCalc(object):
             adt = self.get_adt(rawbomliste[iterator])
             iterator += 1
             for stop in intersectlist:
-                if great_circle(bom, stop).meters < 150:
+                if great_circle(bom, stop).meters < 100:
                     print bomliste
                     print bom
                     intersects += 1

@@ -33,7 +33,7 @@ class BussAPI(Resource):
     # def get(self):
     #    print self.reqparse.parse_args()
 
-    def get(self):
+    def post(self):
         args = self.reqparse.parse_args()
         print args
         lang = "no"

@@ -38,6 +38,7 @@ class BussRequest(object):
         if type(dataen) is list:
             dataout = dataen
         else:
+            print dataen
             dataout = json.loads(dataen)
         return dataout
 
