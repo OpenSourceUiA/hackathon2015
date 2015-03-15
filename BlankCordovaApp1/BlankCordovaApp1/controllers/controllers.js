@@ -4,8 +4,7 @@
         $scope.previousTrips = lStorage.getAll('trips');
         $scope.deleteTrip = function (idx) {
             $scope.previousTrips.splice(idx, 1);
-            $scope.previousTrips.push(splicedTrip)
-            lStorage.save('trips', $scope.splicedTrip) = JSON.stringify('trips')
+
 
         }
         
@@ -46,6 +45,7 @@
             }
         }).success(function (data, status, headers, config) {
             $scope.tripps = data;
+            
             console.log('Success')
             console.log($scope.tripps);
                 
@@ -81,6 +81,7 @@
             trip.direction = '';
             $scope.trips.push(newTrip)
             lStorage.save('trips', $scope.trips) = JSON.stringify('trips')
+            window.location.reload();
             
         }
 

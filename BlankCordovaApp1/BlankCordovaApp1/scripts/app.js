@@ -37,4 +37,5 @@ angular.module('app', ['ionic', 'app.controllers'])
         }
     })
     $urlRouterProvider.otherwise('/app/home');
+    
 });
